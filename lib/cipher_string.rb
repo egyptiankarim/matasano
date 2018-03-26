@@ -13,8 +13,8 @@ class CipherString
   def to_binary_strings(padding = 8)
     binary_strings = []
 
-    @input_string.chars.each do |character|
-      binary_strings.push("%0#{padding}b" % character.bytes[0])
+    @input_string.bytes.each do |byte|
+      binary_strings.push("%0#{padding}b" % byte)
     end
 
     binary_strings
@@ -40,8 +40,9 @@ class CipherString
 
     # Wraps the input key to size with our string.
     wrap = 0
-    to_binary_slices(byte_size).each do |slice|
-      xor_byte = slice.to_i(2) ^ key_bytes[wrap % key_bytes.size]
+    @input_string.bytes.each do |byte|
+
+      xor_byte = byte ^ key_bytes[wrap % key_bytes.size]
       xor_characters.push(xor_byte.chr)
 
       wrap += 1

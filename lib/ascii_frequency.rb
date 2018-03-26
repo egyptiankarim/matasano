@@ -75,9 +75,10 @@ class ASCIIFrequency
   # Default is essentially chi-square testing.
   def exp_error(text, exp = 2)
     exp_error = 0.0
-    (0..255).to_a.each do |ascii|
+    (0..255).each do |ascii|
       observed = (text.scan(ascii.chr).size.to_f / text.size)
-      exp_error += ((observed - @lookup[ascii]) ** exp) / @lookup[ascii]
+
+      exp_error += ((observed - @lookup[ascii]).abs ** exp) / @lookup[ascii]
     end
 
     return exp_error
