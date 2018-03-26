@@ -5,7 +5,7 @@
 
 require_relative "../lib/cipher_string"
 
-input_file_name = ARGV[0]
+input_file_name = ARGV[0] || 'challenge5_input.txt'
 input_file = File.open(input_file_name, "r")
 
 plain_text = CipherString.new(input_file.read)

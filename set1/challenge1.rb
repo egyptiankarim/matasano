@@ -17,7 +17,7 @@ six_bit_slices = hex.to_binary_slices(6)
 base64_chars = []
 
 six_bit_slices.each do |slice|
-  base64_chars.push(b64.lookup(slice.to_i(2)))
+  base64_chars.push(b64.lookup[slice.to_i(2)])
 end
 
 puts base64_chars.join('')

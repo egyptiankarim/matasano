@@ -14,13 +14,13 @@ plain_texts = []
 scorer = ASCIIFrequency.new()
 
 # Limiting to printable characters.
-(32..126).to_a.each do |key|
+(32..126).each do |key|
   text = hex_string.xor_ascii(key.chr)
 
   plain_texts.push({
     key: key,
     text: text,
-    score: scorer.exp_error(text)
+    score: scorer.exp_error(text, 10)
   })
 end
 
@@ -28,6 +28,6 @@ plain_texts = plain_texts.sort_by { |plain_text| plain_text[:score] }
 
 puts "Top 10 Candidates\n\n"
 
-(0..9).to_a.each do |place|
+(0..9).each do |place|
   puts "#{plain_texts[place][:key].chr} (#{plain_texts[place][:key]}) => #{plain_texts[place][:text]} (#{plain_texts[place][:score]})"
 end
