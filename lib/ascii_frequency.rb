@@ -7,7 +7,7 @@ class ASCIIFrequency
       0 => 0.000001, 1 => 0.000001, 2 => 0.000001, 3 => 0.000001,
       4 => 0.000001, 5 => 0.000001, 6 => 0.000001, 7 => 0.000001,
       8 => 0.000001, 9 => 0.000057,
-      10 => 0.000001, 11 => 0.000001, 12 => 0.000001, 13 => 0.000001,
+      10 => 0.000010, 11 => 0.000001, 12 => 0.000001, 13 => 0.000001,
       14 => 0.000001, 15 => 0.000001, 16 => 0.000001, 17 => 0.000001,
       18 => 0.000001, 19 => 0.000001, 20 => 0.000001, 21 => 0.000001,
       22 => 0.000001, 23 => 0.000001, 24 => 0.000001, 25 => 0.000001,
@@ -76,7 +76,7 @@ class ASCIIFrequency
   def exp_error(text, exp = 2)
     exp_error = 0.0
     (0..255).each do |ascii|
-      observed = (text.scan(ascii.chr).size.to_f / text.size)
+      observed = (text.scan(ascii.chr.downcase).size.to_f / text.size)
 
       exp_error += ((observed - @lookup[ascii]).abs ** exp) / @lookup[ascii]
     end
