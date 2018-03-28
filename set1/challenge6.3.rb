@@ -20,8 +20,7 @@ bytes_matrix = cipher_text_slices.map{ |slice| slice.bytes }
 
 full_key = []
 puts bytes_matrix.to_s
-puts "\n\n\n"
-bytes_matrix.transpose.each do |chunk|
+bytes_matrix.transpose[0..0].each do |chunk|
   puts chunk.to_s
   cipher_text_chunk = CipherString.new(chunk.map{ |character| character.chr }.join(''))
 
@@ -37,9 +36,9 @@ bytes_matrix.transpose.each do |chunk|
     })
   end
 
-  plain_texts.sort_by{ |pt| pt[:score] }[0].each do |pt|
-    # full_key.push(pt[:key].chr)
+  plain_texts.sort_by{ |pt| pt[:score] }[0..0].each do |pt|
+    full_key.push(pt[:key].chr)
   end
 end
 
-# puts "Key: #{full_key}"
+puts "Key: #{full_key.join('')}"

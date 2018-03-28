@@ -28,6 +28,6 @@ plain_texts = plain_texts.sort_by { |plain_text| plain_text[:score] }
 
 puts "Top 10 Candidates\n\n"
 
-(0..80).each do |place|
+(0..10).each do |place|
   puts "#{plain_texts[place][:key].chr} (#{plain_texts[place][:key]}) => #{plain_texts[place][:text]} (#{plain_texts[place][:score]})"
 end
