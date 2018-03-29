@@ -14,14 +14,18 @@ cipher_text = CipherString.new(input_file.read)
 # puts "#{cipher_text.input_string.bytes}"
 # puts "\n\n---------------------------------\n\n"
 
+# Originally was doing this with the `slice` method and a regular expression
+# looking for strings of key size length... The regex wasn't matching everything
+# it should, and it screwed me up for a long time. Always work with bytes!
 # Likely key size is 29 bytes.
-cipher_text_slices = cipher_text.input_string.scan(/.{29}/)
-bytes_matrix = cipher_text_slices.map{ |slice| slice.bytes }
+bytes_matrix = []
+cipher_text_chopped = cipher_text.input_string.bytes
+until cipher_text_chopped.length < 29
+  bytes_matrix.push(cipher_text_chopped.shift(29))
+end
 
 full_key = []
-puts bytes_matrix.to_s
-bytes_matrix.transpose[0..0].each do |chunk|
-  puts chunk.to_s
+bytes_matrix.transpose.each do |chunk|
   cipher_text_chunk = CipherString.new(chunk.map{ |character| character.chr }.join(''))
 
   scorer = ASCIIFrequency.new()
