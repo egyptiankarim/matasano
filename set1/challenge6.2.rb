@@ -17,7 +17,7 @@ File.open('challenge6_input_ascii.txt', 'w').write(cipher_text.input_string)
 candidates = {}
 (2..40).each do |key_size|
   # puts "Working on key_size #{key_size}..."
-  candidates[key_size] = cipher_text.normalized_hamming_distance(key_size, 1000)
+  candidates[key_size] = cipher_text.normalized_hamming_distance(key_size)
 end
 
 puts "\nCandidates x Hamming Distance\n\n"

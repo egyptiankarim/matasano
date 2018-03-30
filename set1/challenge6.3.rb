@@ -41,8 +41,12 @@ bytes_matrix.transpose.each do |chunk|
   end
 
   plain_texts.sort_by{ |pt| pt[:score] }[0..0].each do |pt|
+    puts "#{chunk}"
+    puts "#{pt[:key]} [#{pt[:key].chr}]"
+    puts "#{pt[:plain_text]}"
     full_key.push(pt[:key].chr)
   end
+  puts "\n"
 end
 
-puts "Key: #{full_key.join('')}"
+puts "\nKey: #{full_key.join('')}"

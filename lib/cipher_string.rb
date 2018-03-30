@@ -74,7 +74,7 @@ class CipherString
   def normalized_hamming_distance(key_size = 8, samples = 1000)
     slices = @input_string.scan(/.{#{key_size}}/)
 
-    picker = Random.new()
+    # picker = Random.new()
     limiter = slices.length
 
     # puts "[0]#{slices[0]}, ..., [#{limiter - 1}]#{slices[limiter - 1]}"

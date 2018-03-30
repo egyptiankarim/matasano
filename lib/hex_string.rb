@@ -22,6 +22,17 @@ class HexString
     @binary_string.scan(/.{#{slice}}/)
   end
 
+  def to_ascii(bit_length = 8)
+    ascii_bin_strings = self.to_binary_slices(bit_length)
+    ascii_cipher_text = []
+    ascii_bin_strings.each do |character|
+      # puts "#{character} - #{character.to_i(2).chr}"
+      ascii_cipher_text.push(character.to_i(2).chr)
+    end
+
+    return ascii_cipher_text.join('')
+  end
+
   def xor_ascii(key, byte_size = 8)
     xor_characters = []
     key_bytes = key.bytes
